@@ -13,8 +13,8 @@
 
     <section id="authView" class="auth-view">
 
-      <h1 class="web-title">Studytrack</h1>
-      <p class="web-subtitle">Student task and assignment manager</p>
+      <h1 class="app-title">Studytrack</h1>
+      <p class="app-subtitle">Student task and assignment manager</p>
 
       <!-- Login And Signup -->
 
@@ -63,8 +63,49 @@
       <!-- shared message area for success or error feedback -->
 
       <div id="authMessage" class="message-area" role="status"></div>
-      
+
     </section>
+
+    <!-- App View -->
+
+    <section id="appView" class="app-view hidden">
+
+      <header class="app-header">
+        <h1 class="app-title">Studytrack</h1>
+        <button type="button" id="logoutButton" class="secondary-button">Log Out</button>
+      </header>
+
+      <section id="statsGrid" class="stats-grid">
+        <!-- 4 summary cards: total, pending, completed, overdue -->
+        <!-- We'll build these in the CSS/stats stage -->
+      </section>
+
+      <div class="dashboard-grid">
+        <form id="taskForm" class="task-form">
+          <!-- title, subject, description, due_date, priority, status -->
+        </form>
+
+        <div>
+          <section id="filterBar" class="filter-bar">
+            <!-- search input, status filter, priority filter -->
+
+          </section>
+
+          <section id="taskList" class="task-list">
+           <!-- task cards rendered by app.js -->
+
+          </section>
+        </div>
+      </div>
+
+      <div id="appMessage" class="message-area" role="status"></div>
+
+
+    </section>
+  </main>
+
+  
+
   
 </body>
 </html>
