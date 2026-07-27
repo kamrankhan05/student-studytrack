@@ -1,0 +1,65 @@
+:root{
+ --bg: #101815;
+  --surface: #18231f;
+  --surface-soft: #22312b;
+  --text: #f2f4f1;
+  --muted: #aeb9b2;
+  --accent: #c2a05f;
+  --success: #5f9c7c;
+  --danger: #b46b67;
+  --radius: 14px;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+}
+
+/* Reset */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: o;
+}
+
+body{
+  background:var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Roboto,Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Utillity */
+
+.hidden{
+  display: none !important;
+}
+
+button{
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+input,
+select,
+textarea{
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Page shell */
+
+.page-shell {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* App view Dashboard */
+
+.app-view {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.app-view.hidden {
+  display: none;
+}
