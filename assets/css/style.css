@@ -63,3 +63,72 @@ textarea{
 .app-view.hidden {
   display: none;
 }
+
+
+/* Heading */
+.app-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.app-subtitle{
+  color: var(--muted);
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+/* Auth view */
+.auth-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  margin-top: 16px;
+}
+
+.auth-form h2{
+  margin-bottom: 8px;
+}
+
+.auth-form label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.auth-form input {
+  background: var(--surface-soft);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  transition: border-color 0.15s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.auth-form button[type="Submit"]{
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 6px;
+  transition: opacity 0.15s ease;
+}
