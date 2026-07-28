@@ -13,16 +13,12 @@
 
   <main class="page-shell">
 
-    <!-- ============ AUTH VIEW ============ -->
+    <!--  AUTH VIEW  -->
     <!-- Shown when no user is signed in. Holds signup + login forms. -->
     <section id="authView" class="auth-view">
 
       <h1 class="app-title">StudyTrack</h1>
-      <p class="app-subtitle">Your student task and assignment manager</p>
-
-      <!-- We keep BOTH forms in the DOM and toggle which one is visible
-           with a "hidden" class. This avoids reloading the page and
-           keeps the toggle logic simple in auth.js -->
+      <p class="app-subtitle">Student task and assignment manager</p>
 
       <form id="loginForm" class="auth-form">
         <h2>Log In</h2>
@@ -63,9 +59,8 @@
 
     </section>
 
-    <!-- ============ APP VIEW ============ -->
-    <!-- Hidden by default. JS reveals this after a session is confirmed,
-         either right after login or after a page refresh with a valid session. -->
+    <!--  APP VIEW  -->
+    
     <section id="appView" class="app-view hidden">
 
       <header class="app-header">
