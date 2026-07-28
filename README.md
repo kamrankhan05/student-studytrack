@@ -86,7 +86,7 @@ Software Engineering Student
 
 Frontend Developer
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/kamrankhan05
 
 LinkedIn: www.linkedin.com/in/
 kamran-khan-07210b364
