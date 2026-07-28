@@ -1,78 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyTrack | Student Task Manager</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
   <main class="page-shell">
 
-    <!-- Auth View -->
-
+    <!--  AUTH VIEW  -->
+    <!-- Shown when no user is signed in. Holds signup + login forms. -->
     <section id="authView" class="auth-view">
 
-      <h1 class="app-title">Studytrack</h1>
-      <p class="app-subtitle">Student task and assignment manager</p>
+      <h1 class="app-title">StudyTrack</h1>
+      <p class="app-subtitle">Your student task and assignment manager</p>
 
-      <!-- Login And Signup -->
+      <!-- We keep BOTH forms in the DOM and toggle which one is visible
+           with a "hidden" class. This avoids reloading the page and
+           keeps the toggle logic simple in auth.js -->
 
-      <form id="loginForm">
+      <form id="loginForm" class="auth-form">
         <h2>Log In</h2>
 
         <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" name="loginEmail" required>
+        <input type="email" id="loginEmail" name="loginEmail" required />
 
         <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="loginPassword" required minlength="8">
+        <input type="password" id="loginPassword" name="loginPassword" required minlength="6" />
 
         <button type="submit">Log In</button>
 
-        <!-- Switch TO Signup -->
-
         <p class="auth-switch">
-          Dont have an account?
+          Don't have an account?
           <button type="button" id="showSignup" class="link-button">Sign Up</button>
         </p>
       </form>
 
-      <!-- Sign Up Form -->
-
       <form id="signupForm" class="auth-form hidden">
         <h2>Sign Up</h2>
 
-        <label for="signupEmial" >Email</label>
-        <input type="email" id="signupEmail" name="signupEmail" required>
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" name="signupEmail" required />
 
         <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" name="signupPassword" required minlength="8">
+        <input type="password" id="signupPassword" name="signupPassword" required minlength="6" />
 
         <button type="submit">Create Account</button>
 
-        <!-- If Already account Switch -->
-
         <p class="auth-switch">
           Already have an account?
-
           <button type="button" id="showLogin" class="link-button">Log In</button>
         </p>
-
       </form>
 
-      <!-- shared message area for success or error feedback -->
-
+      <!-- Shared message area for auth success/error feedback -->
       <div id="authMessage" class="message-area" role="status"></div>
 
     </section>
 
-    <!-- App View -->
-
+    <!--  APP VIEW  -->
+    
     <section id="appView" class="app-view hidden">
 
       <header class="app-header">
-        <h1 class="app-title">Studytrack</h1>
+        <h1 class="app-title">StudyTrack</h1>
         <button type="button" id="logoutButton" class="secondary-button">Log Out</button>
       </header>
 
@@ -89,24 +82,23 @@
         <div>
           <section id="filterBar" class="filter-bar">
             <!-- search input, status filter, priority filter -->
-
           </section>
 
           <section id="taskList" class="task-list">
-           <!-- task cards rendered by app.js -->
-
+            <!-- task cards rendered by app.js -->
           </section>
         </div>
       </div>
 
       <div id="appMessage" class="message-area" role="status"></div>
 
-
     </section>
+
   </main>
 
-
-
-  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/config.js"></script>
 </body>
 </html>
