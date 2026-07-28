@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudyTrack | Student Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
   <main class="page-shell">
 
-    <!--  AUTH VIEW  -->
+    <!-- ============ AUTH VIEW ============ -->
     <!-- Shown when no user is signed in. Holds signup + login forms. -->
     <section id="authView" class="auth-view">
 
@@ -60,8 +63,9 @@
 
     </section>
 
-    <!--  APP VIEW  -->
-    
+    <!-- ============ APP VIEW ============ -->
+    <!-- Hidden by default. JS reveals this after a session is confirmed,
+         either right after login or after a page refresh with a valid session. -->
     <section id="appView" class="app-view hidden">
 
       <header class="app-header">
@@ -97,8 +101,8 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/auth.js"></script>
   <script src="assets/js/config.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
