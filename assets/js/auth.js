@@ -1,6 +1,5 @@
-// ===========================================
 // STUDYTRACK — AUTHENTICATION
-// ===========================================
+
 
 // ---------- Element references ----------
 const authView = document.getElementById("authView");
