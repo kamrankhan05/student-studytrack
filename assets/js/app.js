@@ -1,5 +1,6 @@
+// ===========================================
 // STUDYTRACK — APP LOGIC (CRUD, RENDER, FILTERS, STATS)
-
+// ===========================================
 
 // ---------- Element references ----------
 const taskForm = document.getElementById("taskForm");
@@ -16,40 +17,55 @@ let editingTaskId = null;
 
 // ---------- Build the task form fields (title, subject, description, due_date, priority, status) ----------
 taskForm.innerHTML = `
+  <span class="form-eyebrow" id="taskFormEyebrow">New Entry</span>
   <h2 id="taskFormTitle">Add Task</h2>
 
   <label for="taskTitle">Title</label>
-  <input type="text" id="taskTitle" required />
+  <input type="text" id="taskTitle" placeholder="e.g. Chapter 4 problem set" required />
 
-  <label for="taskSubject">Subject</label>
-  <input type="text" id="taskSubject" required />
+  <div class="field-row">
+    <div>
+      <label for="taskSubject">Subject</label>
+      <input type="text" id="taskSubject" placeholder="e.g. Calculus II" required />
+    </div>
+    <div>
+      <label for="taskDueDate">Due Date</label>
+      <input type="date" id="taskDueDate" />
+    </div>
+  </div>
 
   <label for="taskDescription">Notes</label>
-  <textarea id="taskDescription" rows="3"></textarea>
+  <textarea id="taskDescription" rows="3" placeholder="Optional details..."></textarea>
 
-  <label for="taskDueDate">Due Date</label>
-  <input type="date" id="taskDueDate" />
-
-  <label for="taskPriority">Priority</label>
-  <select id="taskPriority">
-    <option value="low">Low</option>
-    <option value="medium" selected>Medium</option>
-    <option value="high">High</option>
-  </select>
-
-  <label for="taskStatus">Status</label>
-  <select id="taskStatus">
-    <option value="pending" selected>Pending</option>
-    <option value="completed">Completed</option>
-  </select>
+  <div class="field-row">
+    <div>
+      <label for="taskPriority">Priority</label>
+      <select id="taskPriority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+    <div>
+      <label for="taskStatus">Status</label>
+      <select id="taskStatus">
+        <option value="pending" selected>Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+  </div>
 
   <div class="form-actions">
     <button type="button" id="cancelEditBtn" class="secondary-button hidden">Cancel</button>
-    <button type="submit" id="taskSubmitBtn" class="primary-button">Add Task</button>
+    <button type="submit" id="taskSubmitBtn" class="primary-button">
+      <span class="btn-icon" id="taskSubmitIcon">+</span> Add Task
+    </button>
   </div>
 `;
 
 const taskFormTitle = document.getElementById("taskFormTitle");
+const taskFormEyebrow = document.getElementById("taskFormEyebrow");
+const taskSubmitIcon = document.getElementById("taskSubmitIcon");
 const taskTitleInput = document.getElementById("taskTitle");
 const taskSubjectInput = document.getElementById("taskSubject");
 const taskDescriptionInput = document.getElementById("taskDescription");
@@ -223,8 +239,10 @@ function enterEditMode(task) {
   taskPriorityInput.value = task.priority;
   taskStatusInput.value = task.status;
 
+  taskFormEyebrow.textContent = "Editing";
   taskFormTitle.textContent = "Edit Task";
-  taskSubmitBtn.textContent = "Save Changes";
+  taskSubmitIcon.textContent = "✓";
+  taskSubmitBtn.lastChild.textContent = " Save Changes";
   cancelEditBtn.classList.remove("hidden");
 
   taskForm.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -235,8 +253,10 @@ function exitEditMode() {
   taskForm.reset();
   taskPriorityInput.value = "medium";
   taskStatusInput.value = "pending";
+  taskFormEyebrow.textContent = "New Entry";
   taskFormTitle.textContent = "Add Task";
-  taskSubmitBtn.textContent = "Add Task";
+  taskSubmitIcon.textContent = "+";
+  taskSubmitBtn.lastChild.textContent = " Add Task";
   cancelEditBtn.classList.add("hidden");
 }
 
@@ -308,7 +328,7 @@ function renderTasks(taskArray) {
 
   taskArray.forEach((task) => {
     const card = document.createElement("div");
-    card.className = "task-card";
+    card.className = "task-card priority-" + task.priority;
 
     const overdue = isOverdue(task);
 
