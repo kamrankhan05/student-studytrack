@@ -1,38 +1,54 @@
-:root{
- --bg: #101815;
-  --surface: #18231f;
-  --surface-soft: #22312b;
-  --text: #f2f4f1;
-  --muted: #aeb9b2;
-  --accent: #c2a05f;
-  --success: #5f9c7c;
-  --danger: #b46b67;
-  --radius: 14px;
-  --shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+/* 
+   STUDYTRACK — DESIGN SYSTEM
+*/
+
+:root {
+  --bg: #0f1713;
+  --surface: #17221d;
+  --surface-soft: #202d27;
+  --text: #f4f1e6;
+  --muted: #98a59a;
+  --accent: #d4af6a;
+  --success: #6fa287;
+  --danger: #c17469;
+  --radius: 10px;
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+  --rule-line: rgba(244, 241, 230, 0.06);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --font-body: "Inter", "Segoe UI", sans-serif;
 }
 
-/* Reset */
-*{
+/* ---------- Reset ---------- */
+* {
   box-sizing: border-box;
   margin: 0;
-  padding: o;
+  padding: 0;
 }
 
-body{
-  background:var(--bg);
+body {
+  /* faint ruled-paper lines behind everything */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      var(--rule-line) 32px
+    ),
+    var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", Roboto,Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  line-height: 1.55;
   min-height: 100vh;
 }
 
-/* Utillity */
-
-.hidden{
+/* ---------- Utility ---------- */
+.hidden {
   display: none !important;
 }
 
-button{
+button {
   font-family: inherit;
   cursor: pointer;
   border: none;
@@ -40,47 +56,45 @@ button{
 
 input,
 select,
-textarea{
+textarea {
   font-family: inherit;
   font-size: 1rem;
 }
 
-/* Page shell */
-
+/* ---------- Page shell ---------- */
 .page-shell {
   max-width: 600px;
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 48px 20px;
 }
 
-/* App view Dashboard */
-
+/* App view (dashboard) gets a wider shell once active, since it needs
+   room for a two-column layout on desktop */
 .app-view {
-  max-width: 960px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
-.app-view.hidden {
-  display: none;
-}
-
-
-/* Heading */
-
+/* ---------- Headings ---------- */
 .app-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text);
 }
 
-.app-subtitle{
-  color: var(--muted);
-  margin-top: 4px;
-  margin-bottom: 24px;
+.app-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-top: 6px;
+  margin-bottom: 32px;
 }
 
-/* Auth view */
-
+/* ---------- Auth view: "notebook cover" card with a spiral spine ---------- */
 .auth-view {
   display: flex;
   flex-direction: column;
@@ -89,32 +103,54 @@ textarea{
 }
 
 .auth-form {
+  position: relative;
   width: 100%;
   max-width: 380px;
   background: var(--surface);
-  box-shadow: var(--shadow);
   border-radius: var(--radius);
-  padding: 28px;
+  box-shadow: var(--shadow);
+  padding: 32px 28px 28px 44px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   text-align: left;
-  margin-top: 16px;
+  margin-top: 20px;
+  border-left: 3px solid var(--accent);
 }
 
-.auth-form h2{
-  margin-bottom: 8px;
+/* spiral-binder holes running down the left edge */
+.auth-form::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 24px;
+  bottom: 24px;
+  width: 6px;
+  background-image: radial-gradient(circle, var(--bg) 2.5px, transparent 2.6px);
+  background-size: 6px 22px;
+  background-repeat: repeat-y;
+}
+
+.auth-form h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
 .auth-form label {
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
 .auth-form input {
   background: var(--surface-soft);
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-bottom: 1px solid var(--rule-line);
+  border-radius: 6px;
   padding: 10px 12px;
   color: var(--text);
   transition: border-color 0.15s ease;
@@ -125,26 +161,28 @@ textarea{
   border-color: var(--accent);
 }
 
-.auth-form button[type="Submit"]{
+.auth-form button[type="submit"] {
   background: var(--accent);
-  color: var(--bg);
+  color: #1a1410;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 12px;
   margin-top: 6px;
-  transition: opacity 0.15s ease;
+  transition: transform 0.12s ease, opacity 0.15s ease;
 }
 
-.auth-form button[type="Submit"]:hover{
-  opacity: 0.9;
+.auth-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
 }
 
-.auth-form button[type="Submit"]:disabled{
+.auth-form button[type="submit"]:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
-.auth-switch{
+.auth-switch {
   font-size: 0.85rem;
   color: var(--muted);
   margin-top: 4px;
@@ -155,293 +193,443 @@ textarea{
   color: var(--accent);
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-/* App Header */
-
+/* ---------- App header ---------- */
 .app-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-line);
 }
 
 .secondary-button {
-  background: var(--surface-soft);
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--rule-line);
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.secondary-button:hover {
   color: var(--text);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-weight: 600;
+  border-color: var(--accent);
 }
 
-.secondary-button:hover{
-  background: var(--surface);
-}
-
-
-/* Stats Grid */
-
-.stats-grid{
+/* ---------- Stats grid: "ledger cards" with a colored left edge ---------- */
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
 }
 
 .stat-card {
+  position: relative;
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 18px;
+  padding: 18px 18px 18px 22px;
+  border-left: 3px solid var(--rule-line);
 }
 
 .stat-card .stat-value {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
 }
 
 .stat-card .stat-label {
+  font-family: var(--font-mono);
   color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 4px;
-
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
 }
 
- 
-/* Dashboard layout: form + list side by side on desktop  */
+/* first four cards = total / pending / completed / overdue, colored to match */
+.stat-card:nth-child(1) { border-left-color: var(--accent); }
+.stat-card:nth-child(2) { border-left-color: var(--muted); }
+.stat-card:nth-child(3) { border-left-color: var(--success); }
+.stat-card:nth-child(4) { border-left-color: var(--danger); }
 
+/* ---------- Dashboard layout: form + list side by side on desktop ---------- */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
- 
+
 @media (min-width: 900px) {
   .dashboard-grid {
-    grid-template-columns: 380px 1fr;
+    grid-template-columns: 500px 1fr;
     align-items: start;
   }
 }
- 
-/*  Task form  */
 
+/* ---------- Task form: an index-card feel ---------- */
 .task-form {
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 24px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-bottom: 24px;
+  border-top: 3px solid var(--accent);
 }
- 
+
+.form-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: -8px;
+}
+
+.task-form h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule-line);
+}
+
 .task-form label {
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
- 
+
 .task-form input,
 .task-form select,
 .task-form textarea {
   background: var(--surface-soft);
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-bottom: 1px solid var(--rule-line);
+  border-radius: 6px;
   padding: 10px 12px;
   color: var(--text);
   width: 100%;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
- 
+
+.task-form input::placeholder,
+.task-form textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+/* custom dropdown arrow instead of the default browser arrow */
+.task-form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 13px) calc(50% - 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 32px;
+}
+
+.task-form input:hover,
+.task-form select:hover,
+.task-form textarea:hover {
+  background: var(--surface);
+}
+
 .task-form input:focus,
 .task-form select:focus,
 .task-form textarea:focus {
   outline: none;
   border-color: var(--accent);
+  background: var(--surface);
 }
- 
+
 .form-actions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-line);
 }
- 
+
+.btn-icon {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+/* pairs of fields side by side (Subject+Due Date, Priority+Status) */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .primary-button {
   background: var(--accent);
-  color: var(--bg);
+  color: #1a1410;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.12s ease, opacity 0.15s ease;
 }
- 
+
+.primary-button:hover {
+  transform: translateY(-1px);
+}
+
 .primary-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
- 
-/* Filter bar  */
 
+/* ---------- Filter bar ---------- */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
- 
+
 .filter-bar input,
 .filter-bar select {
-  background: var(--surface-soft);
-  border: 1px solid transparent;
-  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--rule-line);
+  border-radius: 6px;
   padding: 10px 12px;
   color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
 }
- 
+
 .filter-bar input {
   flex: 1;
   min-width: 180px;
 }
- 
-/*  Task list & cards  */
 
+.filter-bar input:focus,
+.filter-bar select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ---------- Task list & cards: ledger rows ---------- */
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
- 
+
 .task-card {
+  position: relative;
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 18px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  border-left: 3px solid var(--rule-line);
+  transition: border-color 0.15s ease;
 }
- 
+
+/* left-edge color coded by priority, matches the badge colors */
+.task-card.priority-low { border-left-color: var(--success); }
+.task-card.priority-medium { border-left-color: var(--accent); }
+.task-card.priority-high { border-left-color: var(--danger); }
+
 .task-card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
 }
- 
+
 .task-card h3 {
+  font-family: var(--font-display);
   font-size: 1.05rem;
+  font-weight: 600;
 }
- 
+
 .task-card .task-subject {
+  font-family: var(--font-mono);
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
 }
- 
+
+.task-card .task-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.task-card .task-due {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .task-card .task-meta {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  font-size: 0.8rem;
-  color: var(--muted);
+  align-items: center;
 }
- 
+
 .task-card-actions {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-line);
 }
- 
+
 .task-card-actions button {
-  background: var(--surface-soft);
-  color: var(--text);
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--rule-line);
   border-radius: 6px;
   padding: 6px 12px;
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
- 
-.task-card-actions button:hover {
-  background: var(--bg);
-}
- 
-.task-card-actions .delete-button:hover {
-  background: var(--danger);
-  color: var(--text);
-}
- 
-/*  Badges  */
 
+.task-card-actions button:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.task-card-actions .delete-button:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Badges ---------- */
 .badge {
   display: inline-block;
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 0.75rem;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   font-weight: 600;
 }
- 
-.badge-priority-low { background: rgba(95, 156, 124, 0.2); color: var(--success); }
-.badge-priority-medium { background: rgba(194, 160, 95, 0.2); color: var(--accent); }
-.badge-priority-high { background: rgba(180, 107, 103, 0.2); color: var(--danger); }
- 
-.badge-status-pending { background: rgba(174, 185, 178, 0.2); color: var(--muted); }
-.badge-status-completed { background: rgba(95, 156, 124, 0.2); color: var(--success); }
- 
-.badge-overdue {
-  background: rgba(180, 107, 103, 0.25);
-  color: var(--danger);
-}
- 
-/* Message area (loading / success / error / empty)  */
 
+.badge-priority-low { background: rgba(111, 162, 135, 0.16); color: var(--success); }
+.badge-priority-medium { background: rgba(212, 175, 106, 0.16); color: var(--accent); }
+.badge-priority-high { background: rgba(193, 116, 105, 0.16); color: var(--danger); }
+
+.badge-status-pending { background: rgba(152, 165, 154, 0.16); color: var(--muted); }
+.badge-status-completed { background: rgba(111, 162, 135, 0.16); color: var(--success); }
+
+/* Overdue reads as a rubber stamp, not a pill */
+.badge-overdue {
+  background: transparent;
+  color: var(--danger);
+  border: 1.5px dashed var(--danger);
+  transform: rotate(-3deg);
+  padding: 2px 8px;
+}
+
+/* ---------- Message area (loading / success / error / empty) ---------- */
 .message-area {
   margin-top: 16px;
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
 }
- 
+
 .message-area.success { color: var(--success); }
 .message-area.error { color: var(--danger); }
 .message-area.loading { color: var(--muted); }
- 
+
 .empty-state {
   text-align: center;
   color: var(--muted);
-  padding: 40px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 48px 20px;
   background: var(--surface);
   border-radius: var(--radius);
+  border: 1px dashed var(--rule-line);
 }
- 
+
 /* RESPONSIVE BREAKPOINTS */
- 
+
 /* Tablet */
 @media (max-width: 900px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
- 
+
 /* Mobile */
 @media (max-width: 560px) {
   .page-shell {
-    padding: 20px 14px;
+    padding: 28px 14px;
   }
- 
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
- 
+
   .app-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
- 
+
   .filter-bar {
     flex-direction: column;
   }
- 
+
   .form-actions {
     justify-content: stretch;
   }
- 
+
   .form-actions button {
     flex: 1;
   }
+
+  .auth-form {
+    padding-left: 32px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
 }
- 
